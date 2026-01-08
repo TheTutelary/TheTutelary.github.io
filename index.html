@@ -1,8 +1,224 @@
 <!DOCTYPE html>
-<html>
-  <body>
-    <h1>My New Travelogue</h1>
-    <p>Welcome to my sustainable, code-based journey.</p>
-    <h2>Next Stop: [Your Dream Destination]</h2>
-  </body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desi European | Travelogue</title>
+    <style>
+        /* --- 1. CORE VARIABLES (The "Soul" of your site) --- */
+        :root {
+            --primary: #2C3E50;      /* Deep European Slate */
+            --accent: #E67E22;       /* Warm Saffron/Spice */
+            --bg: #FAFAFA;           /* Clean Paper White */
+            --text: #333333;         /* Readable Dark Grey */
+            --font-main: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            --font-serif: 'Georgia', serif;
+        }
+
+        /* --- 2. GLOBAL RESET --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: var(--font-main); background: var(--bg); color: var(--text); line-height: 1.6; }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        img { max-width: 100%; height: auto; display: block; }
+
+        /* --- 3. NAVIGATION --- */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .logo { font-weight: bold; font-size: 1.5rem; letter-spacing: -1px; color: var(--primary); }
+        .logo span { color: var(--accent); }
+        .nav-links a { margin-left: 20px; font-size: 0.9rem; font-weight: 600; color: var(--primary); }
+        .nav-links a:hover { color: var(--accent); }
+
+        /* --- 4. HERO SECTION (The Big Intro) --- */
+        .hero {
+            text-align: center;
+            padding: 80px 20px;
+            background: linear-gradient(rgba(44, 62, 80, 0.9), rgba(44, 62, 80, 0.8)), url('https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+        }
+        .hero h1 {
+            font-family: var(--font-serif);
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            font-weight: 300;
+            max-width: 600px;
+            margin: 0 auto 30px auto;
+            opacity: 0.9;
+        }
+        .btn {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.8rem;
+        }
+        .btn:hover { background: #d35400; transform: translateY(-2px); }
+
+        /* --- 5. BLOG GRID (Your Stories) --- */
+        .container { max-width: 1200px; margin: 0 auto; padding: 60px 20px; }
+        .section-title { text-align: center; margin-bottom: 50px; }
+        .section-title h2 { font-size: 2rem; color: var(--primary); margin-bottom: 10px; }
+        .section-title .divider { height: 4px; width: 60px; background: var(--accent); margin: 0 auto; }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+        .card:hover { transform: translateY(-5px); }
+        
+        .card-img { height: 200px; background-color: #ddd; overflow: hidden; }
+        .card-img img { width: 100%; height: 100%; object-fit: cover; }
+        
+        .card-content { padding: 25px; }
+        .card-tag { 
+            color: var(--accent); 
+            font-size: 0.75rem; 
+            font-weight: bold; 
+            text-transform: uppercase; 
+            margin-bottom: 10px;
+            display: block;
+        }
+        .card h3 { font-size: 1.4rem; margin-bottom: 10px; color: var(--primary); font-family: var(--font-serif); }
+        .card p { font-size: 0.95rem; color: #666; margin-bottom: 20px; }
+        .read-more { font-weight: bold; font-size: 0.9rem; color: var(--primary); }
+
+        /* --- 6. ABOUT SECTION --- */
+        .about-preview {
+            background: white;
+            padding: 60px 20px;
+            text-align: center;
+            border-top: 1px solid #eee;
+        }
+        .about-content { max-width: 700px; margin: 0 auto; }
+
+        /* --- 7. FOOTER --- */
+        footer {
+            background: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 0.9rem;
+        }
+        footer p { opacity: 0.7; }
+
+        /* --- MOBILE TWEAKS --- */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .nav-links { display: none; } /* Hidden on mobile for simplicity */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">Desi<span>European</span></div>
+        <div class="nav-links">
+            <a href="#">Home</a>
+            <a href="#">Destinations</a>
+            <a href="#">About Me</a>
+            <a href="#">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <h1>Worlds Collide.</h1>
+        <p>Exploring the cobblestones of Europe with a spicy perspective. A travelogue of culture, food, and finding home in new places.</p>
+        <a href="#latest" class="btn">Read the Blog</a>
+    </header>
+
+    <!-- Latest Posts Grid -->
+    <section id="latest" class="container">
+        <div class="section-title">
+            <h2>Latest Stories</h2>
+            <div class="divider"></div>
+        </div>
+
+        <div class="grid">
+            <!-- Article 1 -->
+            <article class="card">
+                <div class="card-img">
+                    <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Paris Street">
+                </div>
+                <div class="card-content">
+                    <span class="card-tag">France</span>
+                    <h3>Midnight in Paris</h3>
+                    <p>Why the city of lights looks different when you're searching for the perfect late-night chai.</p>
+                    <a href="#" class="read-more">Read Story &rarr;</a>
+                </div>
+            </article>
+
+            <!-- Article 2 -->
+            <article class="card">
+                <div class="card-img">
+                    <img src="https://images.unsplash.com/photo-1467269204594-9661b133dd2b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="German Landscape">
+                </div>
+                <div class="card-content">
+                    <span class="card-tag">Germany</span>
+                    <h3>Bavaria by Train</h3>
+                    <p>Navigating the German rail system and discovering hidden castles in the mist.</p>
+                    <a href="#" class="read-more">Read Story &rarr;</a>
+                </div>
+            </article>
+
+            <!-- Article 3 -->
+            <article class="card">
+                <div class="card-img">
+                    <img src="https://images.unsplash.com/photo-1520175480921-4edfa2983e0f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Italian Coast">
+                </div>
+                <div class="card-content">
+                    <span class="card-tag">Italy</span>
+                    <h3>Summer in Cinque Terre</h3>
+                    <p>Sun, sea, and why Italian hospitality feels strangely familiar.</p>
+                    <a href="#" class="read-more">Read Story &rarr;</a>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-preview">
+        <div class="about-content">
+            <h2>Who is the Desi European?</h2>
+            <p style="margin-top: 20px; color: #666;">
+                I'm a traveler bridging the gap between my heritage and my horizon. 
+                This blog is a collection of my notes, photos, and thoughts as I wander through Europe.
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Desi European. Built with Code.</p>
+    </footer>
+
+</body>
 </html>
