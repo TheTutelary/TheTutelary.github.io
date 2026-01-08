@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me | Desi European</title>
+    
+    <!-- SAME FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <!-- SAME STYLES -->
+    <style>
+        :root {
+            --primary: #1F2937;
+            --accent: #D35400;
+            --bg-light: #FAFAFA;
+            --bg-dark: #111827;
+            --border: #E5E7EB;
+            --font-head: 'Libre Baskerville', serif; 
+            --font-body: 'Montserrat', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: var(--font-body); background: var(--bg-light); color: var(--primary); line-height: 1.7; font-size: 16px; }
+        a { text-decoration: none; color: inherit; transition: 0.3s ease; }
+        img { width: 100%; display: block; }
+        .container { max-width: 1140px; margin: 0 auto; padding: 0 20px; }
+        .section-padding { padding: 80px 0; }
+        
+        .btn { display: inline-block; padding: 12px 30px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; font-size: 0.8rem; cursor: pointer; transition: all 0.3s; background: var(--accent); color: white; border: 2px solid var(--accent); }
+        .btn:hover { background: transparent; color: var(--accent); }
+
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background: white; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 15px rgba(0,0,0,0.04); }
+        .logo { font-family: var(--font-head); font-size: 1.5rem; font-weight: 700; color: var(--primary); }
+        .logo span { color: var(--accent); }
+        .nav-menu a { margin-left: 25px; font-weight: 500; font-size: 0.9rem; color: #4B5563; }
+        .nav-menu a:hover { color: var(--accent); }
+
+        /* ABOUT SPECIFIC */
+        .about-header { text-align: center; margin-bottom: 60px; }
+        .about-header h1 { font-family: var(--font-head); font-size: 3rem; margin-bottom: 20px; }
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .about-text p { margin-bottom: 20px; font-size: 1.1rem; color: #4B5563; }
+        .about-img img { border-radius: 8px; box-shadow: 20px 20px 0px var(--accent); }
+
+        footer { background: var(--bg-dark); color: #9CA3AF; padding: 60px 0; font-size: 0.9rem; margin-top: 80px; }
+        
+        @media (max-width: 768px) {
+            .about-grid { grid-template-columns: 1fr; }
+            .about-img img { box-shadow: 10px 10px 0px var(--accent); }
+            .nav-menu { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">Desi<span>European</span></div>
+        <div class="nav-menu">
+            <a href="index.html">Home</a>
+            <a href="about.html" style="color: var(--accent);">About</a>
+            <a href="template.html">Blog</a>
+        </div>
+        <a href="#" class="btn" style="padding: 8px 20px; font-size: 0.7rem;">Subscribe</a>
+    </nav>
+
+    <div class="container section-padding">
+        <div class="about-header">
+            <h1>Behind the Journey</h1>
+            <p>Why I started documenting life between two cultures.</p>
+        </div>
+
+        <div class="about-grid">
+            <div class="about-img">
+                <img src="https://images.unsplash.com/photo-1527631746610-bca00a040d60?auto=format&fit=crop&w=800&q=80" alt="Traveler">
+            </div>
+            <div class="about-text">
+                <p>Hello! I am the Desi European.</p>
+                <p>My story began when I moved from South Asia to Europe 5 years ago. I found myself in a world of cobblestone streets, quiet Sundays, and bread that was harder than I was used to.</p>
+                <p>But I also found beauty. I found that Italian hospitality rivals ours. I found that German precision brings a strange peace. And I found that you can always find good chai if you look hard enough.</p>
+                <p>This blog is my attempt to bridge these two worlds. To show you Europe not just as a tourist destination, but as a home.</p>
+                <br>
+                <a href="#" class="btn">Work With Me</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container text-center">
+            <p>&copy; 2026 Desi European. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
