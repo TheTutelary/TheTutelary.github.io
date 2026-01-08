@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Post Title | Desi European</title>
+    
+    <!-- FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- STYLES -->
+    <style>
+        :root {
+            --primary: #1F2937;
+            --accent: #D35400;
+            --bg-light: #FAFAFA;
+            --bg-dark: #111827;
+            --border: #E5E7EB;
+            --font-head: 'Libre Baskerville', serif; 
+            --font-body: 'Montserrat', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: var(--font-body); background: var(--bg-light); color: var(--primary); line-height: 1.8; font-size: 18px; }
+        a { text-decoration: none; color: inherit; transition: 0.3s ease; }
+        img { width: 100%; display: block; border-radius: 4px; }
+        .container { max-width: 800px; margin: 0 auto; padding: 0 20px; } /* Narrrower for reading */
+        
+        .btn { display: inline-block; padding: 12px 30px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; font-size: 0.8rem; cursor: pointer; background: var(--accent); color: white; }
+
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background: white; border-bottom: 1px solid #eee; }
+        .logo { font-family: var(--font-head); font-size: 1.5rem; font-weight: 700; color: var(--primary); }
+        .logo span { color: var(--accent); }
+        .nav-menu a { margin-left: 25px; font-weight: 500; font-size: 0.9rem; color: #4B5563; }
+
+        /* ARTICLE STYLES */
+        .article-header { text-align: center; padding: 60px 0 40px; }
+        .category { color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem; }
+        .article-title { font-family: var(--font-head); font-size: 2.8rem; margin: 15px 0 20px; line-height: 1.2; }
+        .article-meta { color: #888; font-size: 0.9rem; font-style: italic; }
+        
+        .article-content { font-family: 'Georgia', serif; color: #333; margin-bottom: 80px; }
+        .article-content p { margin-bottom: 25px; line-height: 1.8; font-size: 1.1rem; }
+        .article-content h2 { font-family: var(--font-body); font-weight: 700; margin-top: 40px; margin-bottom: 20px; font-size: 1.8rem; }
+
+        footer { background: var(--bg-dark); color: #9CA3AF; padding: 60px 0; font-size: 0.9rem; text-align: center; }
+
+        @media (max-width: 768px) {
+            .article-title { font-size: 2rem; }
+            .nav-menu { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">Desi<span>European</span></div>
+        <div class="nav-menu">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="template.html">Blog</a>
+        </div>
+    </nav>
+
+    <article>
+        <div class="container">
+            <header class="article-header">
+                <span class="category">Travel Diary</span>
+                <h1 class="article-title">Berlin Trip - Test Post</h1>
+                <p class="article-meta">By Desi European • October 12, 2025</p>
+            </header>
+
+            <img src="https://images.unsplash.com/photo-1516483638261-f4dbaf036963?auto=format&fit=crop&w=1200&q=80" alt="Cinque Terre View" style="margin-bottom: 40px;">
+
+            <div class="article-content">
+                <p>There is a specific shade of yellow that I thought only existed in turmeric stains on my mother's tablecloth. Then I went to Italy.</p>
+                <p>Cinque Terre is not just a place; it is a chaotic, beautiful mess of color that feels incredibly familiar to anyone who grew up in South Asia. The noise, the shouting across balconies, the laundry hanging like flags of surrender—it all felt like home.</p>
+                
+                <h2>The Train Ride</h2>
+                <p>Getting there is half the battle. The train hugs the coastline, disappearing into tunnels and bursting out into sunlight that blinds you. It reminds me of the trains back home, minus the open doors.</p>
+                
+                <h2>The Food</h2>
+                <p>We need to talk about the pesto. It’s green, it’s vibrant, and it has a kick that I didn’t expect. While it’s not spicy in the way I’m used to, the basil has a pepperiness that wakes you up.</p>
+                
+                <p><em>This is where your story continues...</em></p>
+            </div>
+            
+            <hr style="border: 0; border-top: 1px solid #eee; margin-bottom: 40px;">
+            
+            <div class="text-center">
+                <a href="index.html" class="btn">Back to Home</a>
+            </div>
+        </div>
+    </article>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Desi European. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
