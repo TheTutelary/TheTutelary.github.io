@@ -8,9 +8,11 @@ Prepare your images: Save your photos in /assets/images/ using lowercase names (
 
 Create the post:
 
-Go to the /posts/ folder.
+Go to the /posts/ folder and find (or create) the folder for the current year (e.g., /posts/2026/).
 
-Copy template.html and rename it (e.g., tokyo-trip.html).
+Copy template.html into that year folder and rename it (e.g., tokyo-trip.html).
+
+Important: If you are in a year-nested folder, update paths to assets (e.g., ../../assets/css/style.css).
 
 Update the title, h1, and content sections.
 
