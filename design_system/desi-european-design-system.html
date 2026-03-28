@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desi European — Design System Reference</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        :root {
+            /* BRAND PRIMARIES */
+            --color-saffron: #E67E22;
+            --color-midnight: #1A2A3A;
+            
+            /* NEUTRALS (LAGOM) */
+            --color-cream: #FAF7F2;
+            --color-lichen: #E5E7EB;
+            --color-earth: #2D241E;
+            --color-white: #FFFFFF;
+            
+            /* TYPOGRAPHY */
+            --font-head: 'Libre Baskerville', serif;
+            --font-body: 'Montserrat', sans-serif;
+            
+            /* SPACING */
+            --space-1: 8px;
+            --space-2: 16px;
+            --space-3: 24px;
+            --space-4: 32px;
+            --space-6: 48px;
+            --space-8: 64px;
+            
+            /* RADIUS */
+            --radius-sm: 4px;
+            --radius-md: 8px;
+            --radius-pill: 9999px;
+            
+            /* SHADOWS */
+            --shadow-soft: 0 4px 20px rgba(0,0,0,0.03);
+            --shadow-glow: 0 10px 40px rgba(230, 126, 34, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: var(--font-body);
+            background-color: var(--color-cream);
+            color: var(--color-earth);
+            line-height: 1.6;
+        }
+
+        /* LAYOUT */
+        .app-shell { display: flex; min-height: 100vh; }
+        
+        aside {
+            width: 280px;
+            background: var(--color-midnight);
+            color: white;
+            padding: var(--space-4);
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+        }
+
+        main {
+            margin-left: 280px;
+            padding: var(--space-8);
+            max-width: 1000px;
+            width: 100%;
+        }
+
+        /* TYPOGRAPHY GUIDE */
+        .nav-link {
+            display: block;
+            color: rgba(255,255,255,0.6);
+            text-decoration: none;
+            margin-bottom: var(--space-2);
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: 0.2s;
+        }
+        .nav-link:hover, .nav-link.active { color: var(--color-saffron); }
+        .logo { font-family: var(--font-head); font-size: 1.5rem; margin-bottom: var(--space-6); color: white; }
+        .logo span { color: var(--color-saffron); }
+
+        section { margin-bottom: var(--space-8); padding-top: var(--space-4); border-top: 1px solid var(--color-lichen); }
+        h1 { font-family: var(--font-head); font-size: 3.5rem; margin-bottom: var(--space-2); color: var(--color-midnight); }
+        h2 { font-family: var(--font-head); font-size: 2.25rem; margin-bottom: var(--space-4); color: var(--color-midnight); }
+        .subtitle { font-size: 1.25rem; opacity: 0.7; margin-bottom: var(--space-6); }
+
+        /* COMPONENTS */
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-3); }
+        
+        /* COLOR SWATCH */
+        .swatch {
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            background: white;
+            box-shadow: var(--shadow-soft);
+        }
+        .swatch-color { height: 120px; width: 100%; }
+        .swatch-info { padding: var(--space-2); font-size: 0.85rem; }
+        .swatch-name { font-weight: 700; display: block; }
+        .swatch-hex { opacity: 0.6; font-family: monospace; }
+
+        /* TYPE SCALE TABLE */
+        table { width: 100%; border-collapse: collapse; margin-top: var(--space-4); }
+        th { text-align: left; padding: var(--space-2); font-size: 0.8rem; text-transform: uppercase; color: var(--color-saffron); }
+        td { padding: var(--space-2); border-bottom: 1px solid var(--color-lichen); }
+        .font-spec { font-family: monospace; font-size: 0.8rem; opacity: 0.5; }
+
+        /* BUTTONS */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 28px;
+            border-radius: var(--radius-pill);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: none;
+        }
+        .btn-primary { background: var(--color-saffron); color: white; box-shadow: var(--shadow-glow); }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 15px 45px rgba(230, 126, 34, 0.2); }
+        .btn-secondary { background: var(--color-midnight); color: white; }
+        .btn-outline { background: transparent; border: 2px solid var(--color-midnight); color: var(--color-midnight); }
+
+        /* SURFACE CARDS */
+        .panel { background: white; border-radius: var(--radius-sm); border: 1px solid var(--color-lichen); padding: var(--space-4); }
+        .panel-elevated { background: white; border-radius: var(--radius-sm); box-shadow: var(--shadow-soft); padding: var(--space-4); transition: 0.3s; }
+        .panel-elevated:hover { transform: translateY(-4px); box-shadow: 0 20px 50px rgba(0,0,0,0.06); }
+
+        /* DASHBOARD ELEMENTS */
+        .kpi-row { display: flex; gap: var(--space-4); margin-bottom: var(--space-6); }
+        .kpi-card { flex: 1; padding: var(--space-3); background: white; border-radius: var(--radius-md); border-left: 4px solid var(--color-saffron); box-shadow: var(--shadow-soft); }
+        .kpi-label { font-size: 0.75rem; font-weight: 700; color: var(--color-saffron); text-transform: uppercase; margin-bottom: 4px; }
+        .kpi-value { font-family: var(--font-head); font-size: 1.5rem; color: var(--color-midnight); }
+
+        .quote-preview {
+            border-left: 4px solid var(--color-saffron);
+            padding: var(--space-3) var(--space-4);
+            margin: var(--space-4) 0;
+            font-family: var(--font-head);
+            font-style: italic;
+            font-size: 1.25rem;
+            color: var(--color-midnight);
+            background: rgba(230, 126, 34, 0.03);
+        }
+
+        .do-dont { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); }
+        .do { color: #10B981; font-weight: 700; margin-bottom: 8px; }
+        .dont { color: #EF4444; font-weight: 700; margin-bottom: 8px; }
+    </style>
+</head>
+<body>
+
+<div class="app-shell">
+    <aside>
+        <div class="logo">Desi<span>European</span></div>
+        <nav>
+            <a href="#principles" class="nav-link active">Principles</a>
+            <a href="#colors" class="nav-link">Colors</a>
+            <a href="#typography" class="nav-link">Typography</a>
+            <a href="#spacing" class="nav-link">Spacing</a>
+            <a href="#surfaces" class="nav-link">Surfaces</a>
+            <a href="#buttons" class="nav-link">Buttons</a>
+            <a href="#components" class="nav-link">Components</a>
+            <a href="#do-dont" class="nav-link">Guidelines</a>
+        </nav>
+    </aside>
+
+    <main>
+        <header>
+            <p style="text-transform: uppercase; letter-spacing: 2px; font-weight: 700; color: var(--color-saffron);">Golden Bridge v1.0</p>
+            <h1>Design System Reference</h1>
+            <p class="subtitle">A visual bridge between Indian warmth and Scandinavian Lagom.</p>
+        </header>
+
+        <section id="principles">
+            <h2>Design Principles</h2>
+            <div class="grid-3">
+                <div class="panel">
+                    <i class="ph ph-scales" style="font-size: 2rem; color: var(--color-saffron);"></i>
+                    <h3 style="margin: 12px 0 8px;">Lagom First</h3>
+                    <p style="font-size: 0.9rem; opacity: 0.8;">"Just enough." We strip away the noise to let the storytelling breathe. Minimalism with purpose.</p>
+                </div>
+                <div class="panel">
+                    <i class="ph ph-heart" style="font-size: 2rem; color: var(--color-saffron);"></i>
+                    <h3 style="margin: 12px 0 8px;">Radical Warmth</h3>
+                    <p style="font-size: 0.9rem; opacity: 0.8;">Clean lines don't have to be cold. We use Cardamom Cream and Saffron to keep the soul alive.</p>
+                </div>
+                <div class="panel">
+                    <i class="ph ph-compass" style="font-size: 2rem; color: var(--color-saffron);"></i>
+                    <h3 style="margin: 12px 0 8px;">Editorial Flow</h3>
+                    <p style="font-size: 0.9rem; opacity: 0.8;">The website should feel like a premium travel magazine. Typography is our primary interface.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="colors">
+            <h2>Color Palette</h2>
+            <div class="grid-3">
+                <div class="swatch">
+                    <div class="swatch-color" style="background: var(--color-saffron);"></div>
+                    <div class="swatch-info">
+                        <span class="swatch-name">Saffron Sunrise</span>
+                        <span class="swatch-hex">#E67E22</span>
+                    </div>
+                </div>
+                <div class="swatch">
+                    <div class="swatch-color" style="background: var(--color-midnight);"></div>
+                    <div class="swatch-info">
+                        <span class="swatch-name">Midnight Fjord</span>
+                        <span class="swatch-hex">#1A2A3A</span>
+                    </div>
+                </div>
+                <div class="swatch">
+                    <div class="swatch-color" style="background: var(--color-cream); border-bottom: 1px solid var(--color-lichen);"></div>
+                    <div class="swatch-info">
+                        <span class="swatch-name">Cardamom Cream</span>
+                        <span class="swatch-hex">#FAF7F2</span>
+                    </div>
+                </div>
+                <div class="swatch">
+                    <div class="swatch-color" style="background: var(--color-earth);"></div>
+                    <div class="swatch-info">
+                        <span class="swatch-name">Deep Earth</span>
+                        <span class="swatch-hex">#2D241E</span>
+                    </div>
+                </div>
+                <div class="swatch">
+                    <div class="swatch-color" style="background: var(--color-lichen);"></div>
+                    <div class="swatch-info">
+                        <span class="swatch-name">Lichen Grey</span>
+                        <span class="swatch-hex">#E5E7EB</span>
+                    </div>
+                </div>
+                <div class="swatch">
+                    <div class="swatch-color" style="background: #C0392B;"></div>
+                    <div class="swatch-info">
+                        <span class="swatch-name">Terra Cotta</span>
+                        <span class="swatch-hex">#C0392B</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="typography">
+            <h2>Typography</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Scale</th>
+                        <th>Sample</th>
+                        <th>Spec</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Display</td>
+                        <td style="font-family: var(--font-head); font-size: 3.5rem;">The Art of Slow Travel</td>
+                        <td class="font-spec">Baskerville 700 / 3.5rem</td>
+                    </tr>
+                    <tr>
+                        <td>H1 title</td>
+                        <td style="font-family: var(--font-head); font-size: 2.25rem;">Navigating Two Cultures</td>
+                        <td class="font-spec">Baskerville 400 / 2.25rem</td>
+                    </tr>
+                    <tr>
+                        <td>H2 Title</td>
+                        <td style="font-family: var(--font-head); font-size: 1.5rem;">The Swedish Fika Ritual</td>
+                        <td class="font-spec">Baskerville 400 / 1.5rem</td>
+                    </tr>
+                    <tr>
+                        <td>Body Large</td>
+                        <td style="font-size: 1.125rem;">We suddenly found ourselves in a world of fika breaks and Lagom living...</td>
+                        <td class="font-spec">Montserrat 400 / 1.125rem</td>
+                    </tr>
+                    <tr>
+                        <td>Caption</td>
+                        <td style="font-weight: 600; font-size: 0.8rem; text-transform: uppercase; color: var(--color-saffron);">Follow the Journey</td>
+                        <td class="font-spec">Montserrat 600 / 0.8rem</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="surfaces">
+            <h2>Surfaces & Hierarchy</h2>
+            <div class="grid-3">
+                <div class="panel">
+                    <span class="kpi-label">Surface 1</span>
+                    <p style="font-size: 0.8rem;">Structural Panel (Lichen Border)</p>
+                </div>
+                <div class="panel-elevated">
+                    <span class="kpi-label">Surface 2</span>
+                    <p style="font-size: 0.8rem;">Elevated Panel (Soft Glow Shadow)</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="buttons">
+            <h2>Action Controls</h2>
+            <div style="display: flex; gap: 20px; align-items: center;">
+                <button class="btn btn-primary">Begin Reading</button>
+                <button class="btn btn-secondary">Our Travel Map</button>
+                <button class="btn btn-outline">Learn More</button>
+            </div>
+        </section>
+
+        <section id="components">
+            <h2>Component Foundations</h2>
+            <div class="kpi-row">
+                <div class="kpi-card">
+                    <div class="kpi-label">Current Trip</div>
+                    <div class="kpi-value">Gothenburg, SE</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">Duration</div>
+                    <div class="kpi-value">12 Days</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">Avg Temp</div>
+                    <div class="kpi-value">22°C</div>
+                </div>
+            </div>
+
+            <div class="quote-preview">
+                "In Sweden, we found the silence we didn't know we were looking for. In India, we have the chaos that keeps us alive."
+            </div>
+        </section>
+
+        <section id="do-dont">
+            <h2>The Lagom Guidelines</h2>
+            <div class="do-dont">
+                <div class="panel">
+                    <div class="do"><i class="ph ph-check-circle"></i> DO</div>
+                    <ul style="font-size: 0.85rem; padding-left: 15px;">
+                        <li>Use Cardamom Cream for large background areas.</li>
+                        <li>Keep line height generous (1.75) for long stories.</li>
+                        <li>Use Saffron Sunrise strictly for interactive elements.</li>
+                    </ul>
+                </div>
+                <div class="panel">
+                    <div class="dont"><i class="ph ph-x-circle"></i> DON'T</div>
+                    <ul style="font-size: 0.85rem; padding-left: 15px;">
+                        <li>Use pure black (#000) for body text. Use Deep Earth.</li>
+                        <li>Add complex gradients or blurs. Keep it grounded.</li>
+                        <li>Forget the "Editorial Duo" pairing in components.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <footer style="padding: 40px 0; border-top: 1px solid var(--color-lichen); opacity: 0.5; font-size: 0.8rem;">
+            &copy; 2026 Desi European. Designed with Lagom.
+        </footer>
+    </main>
+</div>
+
+</body>
+</html>

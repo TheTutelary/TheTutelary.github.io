@@ -1,0 +1,1432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tribera — Design System Reference</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Tokens (verbatim from tribera-theme.css) ─────────── */
+    :root {
+      --font-sans:    'Outfit', ui-sans-serif, system-ui, sans-serif;
+      --font-display: 'Lora', Georgia, 'Times New Roman', serif;
+      --text-xs:   11px;
+      --text-sm:   13px;
+      --text-base: 15px;
+      --text-md:   17px;
+      --text-lg:   20px;
+      --text-xl:   24px;
+      --text-2xl:  30px;
+      --text-3xl:  38px;
+      --text-4xl:  48px;
+      --leading-tight:  1.2;
+      --leading-snug:   1.4;
+      --leading-normal: 1.6;
+      --leading-relaxed:1.75;
+      --weight-light:   300;
+      --weight-regular: 400;
+      --weight-medium:  500;
+      --weight-semibold:600;
+      --radius-xs: 6px;
+      --radius-sm: 10px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --radius-xl: 28px;
+      --radius-full: 9999px;
+      --space-1:  4px;
+      --space-2:  8px;
+      --space-3:  12px;
+      --space-4:  16px;
+      --space-5:  20px;
+      --space-6:  24px;
+      --space-8:  32px;
+      --space-10: 40px;
+      --space-12: 48px;
+      --space-16: 64px;
+      --ease-smooth: cubic-bezier(.4, 0, .2, 1);
+      --duration-fast:   120ms;
+      --duration-base:   200ms;
+
+      /* Surfaces */
+      --bg-page:     #F7F3EC;
+      --bg-shell:    rgba(237, 232, 223, 0.82);
+      --bg-surface:  rgba(255, 255, 255, 0.95);
+      --bg-panel:    #FFFFFF;
+      --bg-control:  rgba(228, 221, 209, 0.55);
+      --bg-elevated: #FFFFFF;
+
+      /* Borders */
+      --border-subtle: rgba(46, 36, 25, 0.09);
+      --border-strong: rgba(46, 36, 25, 0.18);
+      --border-focus:  #4E7260;
+
+      /* Text */
+      --text-primary:   #2E2419;
+      --text-secondary: #6B5F52;
+      --text-muted:     #B5AC9E;
+      --text-inverse:   #F7F3EC;
+      --text-on-accent: #FFFFFF;
+      --text-link:      #4E7260;
+      --text-link-hover:#3D5E4E;
+
+      /* Accent */
+      --accent-solid:       #4E7260;
+      --accent-hover:       #3D5E4E;
+      --accent-tint:        #E3EDE8;
+      --accent-mid:         #8BB5A0;
+      --accent-gradient:    linear-gradient(135deg, #5C8A72, #3D5E4E);
+
+      /* Amber */
+      --amber-solid:  #C97D2E;
+      --amber-tint:   #F5EAD8;
+
+      /* Status */
+      --success:       #4E7260;
+      --success-tint:  #E3EDE8;
+      --warning:       #C97D2E;
+      --warning-tint:  #F5EAD8;
+      --danger:        #A84F30;
+      --danger-tint:   #FAE8E2;
+      --info:          #6B8FAB;
+      --info-tint:     #E4EEF5;
+
+      /* Shadows */
+      --shadow-xs:   0 1px 3px  rgba(46, 36, 25, 0.07);
+      --shadow-soft: 0 4px 16px rgba(46, 36, 25, 0.09);
+      --shadow-md:   0 12px 40px rgba(46, 36, 25, 0.12);
+
+      /* Focus */
+      --focus-ring: 0 0 0 3px rgba(78, 114, 96, 0.28);
+    }
+
+    /* ── Reset ───────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-sans);
+      font-size: var(--text-base);
+      background: var(--bg-page);
+      color: var(--text-primary);
+      -webkit-font-smoothing: antialiased;
+      line-height: var(--leading-normal);
+    }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg-page); }
+    ::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: var(--radius-full); }
+    ::selection { background: var(--accent-tint); color: var(--text-primary); }
+
+    /* ── Layout ──────────────────────────────── */
+    .ds-shell {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      min-height: 100vh;
+    }
+
+    /* ── Sidebar nav ─────────────────────────── */
+    .ds-nav {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+      background: color-mix(in srgb, var(--bg-shell) 94%, transparent);
+      border-right: 1px solid var(--border-subtle);
+      padding: 28px 14px 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .ds-nav-brand {
+      font-family: var(--font-sans);
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      color: var(--text-primary);
+      padding: 0 10px 16px;
+      border-bottom: 1px solid var(--border-subtle);
+      margin-bottom: 10px;
+    }
+    .ds-nav-brand span { color: var(--accent-solid); }
+
+    .ds-nav-group-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      padding: 12px 10px 4px;
+    }
+
+    .ds-nav-link {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 34px;
+      padding: 0 10px;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: background var(--duration-fast) var(--ease-smooth), color var(--duration-fast) var(--ease-smooth);
+      cursor: pointer;
+    }
+    .ds-nav-link:hover {
+      background: color-mix(in srgb, var(--bg-control) 90%, transparent);
+      color: var(--text-primary);
+    }
+    .ds-nav-link.active {
+      background: var(--bg-control);
+      color: var(--accent-solid);
+      font-weight: 500;
+      border: 1px solid var(--border-subtle);
+    }
+    .ds-nav-dot {
+      width: 6px; height: 6px;
+      border-radius: 999px;
+      background: currentColor;
+      opacity: 0.5;
+      flex-shrink: 0;
+    }
+
+    /* ── Main ────────────────────────────────── */
+    .ds-main {
+      padding: 56px 60px 120px;
+      max-width: 980px;
+    }
+
+    /* ── Doc header ──────────────────────────── */
+    .ds-header {
+      margin-bottom: 72px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .ds-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--accent-solid);
+      background: var(--accent-tint);
+      padding: 4px 12px;
+      border-radius: var(--radius-full);
+      margin-bottom: 16px;
+    }
+    .ds-header h1 {
+      font-family: var(--font-display);
+      font-size: 40px;
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.015em;
+      color: var(--text-primary);
+      margin-bottom: 12px;
+    }
+    .ds-header h1 em { font-style: italic; color: var(--accent-solid); }
+    .ds-header p {
+      font-size: 16px;
+      color: var(--text-secondary);
+      font-weight: 300;
+      line-height: 1.7;
+      max-width: 520px;
+    }
+    .ds-header-meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+    .ds-meta-chip {
+      font-size: 12px;
+      font-weight: 500;
+      padding: 4px 12px;
+      border-radius: var(--radius-full);
+      background: var(--bg-panel);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-secondary);
+    }
+
+    /* ── Section ─────────────────────────────── */
+    .ds-section {
+      margin-bottom: 80px;
+      scroll-margin-top: 32px;
+    }
+    .ds-section-head {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 32px;
+    }
+    .ds-section-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+    .ds-section-title {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 400;
+      color: var(--text-primary);
+      line-height: 1.3;
+      margin-bottom: 6px;
+    }
+    .ds-section-sub {
+      font-size: 14px;
+      color: var(--text-secondary);
+      font-weight: 300;
+      line-height: 1.65;
+      max-width: 560px;
+    }
+    .ds-divider {
+      height: 1px;
+      background: var(--border-subtle);
+      flex: 1;
+    }
+
+    /* ── Cards / panels ──────────────────────── */
+    .ds-grid { display: grid; gap: 16px; }
+    .ds-grid-2 { grid-template-columns: 1fr 1fr; }
+    .ds-grid-3 { grid-template-columns: 1fr 1fr 1fr; }
+    .ds-col-full { grid-column: 1 / -1; }
+
+    .ds-card {
+      background: var(--bg-panel);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+    .ds-card-head {
+      padding: 16px 20px 14px;
+      border-bottom: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      background: color-mix(in srgb, var(--bg-page) 40%, var(--bg-panel));
+    }
+    .ds-card-title { font-size: 13px; font-weight: 600; color: var(--text-primary); letter-spacing: -0.01em; }
+    .ds-card-body { padding: 20px; }
+    .ds-tag {
+      font-size: 10px; font-weight: 600; letter-spacing: 0.07em;
+      text-transform: uppercase; padding: 3px 9px;
+      border-radius: var(--radius-full);
+    }
+    .ds-tag-lora  { background: var(--amber-tint); color: var(--amber-solid); }
+    .ds-tag-outfit{ background: var(--accent-tint); color: var(--accent-solid); }
+    .ds-tag-token { background: var(--info-tint); color: var(--info); }
+
+    /* ── Color swatches ──────────────────────── */
+    .swatch-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+      gap: 10px;
+    }
+    .swatch {
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid var(--border-subtle);
+    }
+    .swatch-color {
+      height: 60px;
+      width: 100%;
+    }
+    .swatch-info {
+      background: var(--bg-panel);
+      padding: 8px 10px;
+    }
+    .swatch-name { font-size: 11px; font-weight: 600; color: var(--text-primary); display: block; margin-bottom: 2px; }
+    .swatch-hex  { font-size: 10px; color: var(--text-muted); font-family: 'Courier New', monospace; }
+
+    .swatch-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+    .swatch-inline {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .swatch-dot {
+      width: 20px; height: 20px;
+      border-radius: var(--radius-xs);
+      border: 1px solid var(--border-subtle);
+      flex-shrink: 0;
+    }
+    .swatch-label { font-size: 12px; color: var(--text-secondary); font-family: 'Courier New', monospace; }
+
+    /* ── Token pills ─────────────────────────── */
+    .token-list { display: flex; flex-direction: column; gap: 6px; }
+    .token-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 10px;
+      border-radius: var(--radius-sm);
+      background: var(--bg-page);
+      border: 1px solid var(--border-subtle);
+      gap: 12px;
+    }
+    .token-name {
+      font-size: 12px;
+      font-family: 'Courier New', monospace;
+      color: var(--accent-solid);
+      font-weight: 500;
+    }
+    .token-value {
+      font-size: 12px;
+      color: var(--text-muted);
+      font-family: 'Courier New', monospace;
+    }
+    .token-preview {
+      width: 16px; height: 16px;
+      border-radius: var(--radius-xs);
+      border: 1px solid var(--border-subtle);
+      flex-shrink: 0;
+    }
+
+    /* ── Surface hierarchy ───────────────────── */
+    .surface-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .surface-layer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 16px;
+      border: 1px solid var(--border-subtle);
+    }
+    .surface-layer:first-child { border-radius: var(--radius-md) var(--radius-md) 0 0; }
+    .surface-layer:last-child  { border-radius: 0 0 var(--radius-md) var(--radius-md); }
+    .surface-info { display: flex; flex-direction: column; gap: 3px; }
+    .surface-name { font-size: 13px; font-weight: 600; color: var(--text-primary); letter-spacing: -0.01em; }
+    .surface-desc { font-size: 12px; color: var(--text-secondary); font-weight: 300; }
+    .surface-token { font-size: 11px; font-family: 'Courier New', monospace; color: var(--accent-solid); }
+
+    /* ── Radius visual ───────────────────────── */
+    .radius-demo {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      align-items: flex-end;
+    }
+    .radius-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+    .radius-shape {
+      background: var(--accent-tint);
+      border: 1.5px solid var(--accent-solid);
+    }
+    .radius-label { font-size: 11px; font-weight: 600; color: var(--text-muted); text-align: center; }
+    .radius-value { font-size: 10px; font-family: 'Courier New', monospace; color: var(--accent-solid); text-align: center; }
+
+    /* ── Typography specimens ────────────────── */
+    .type-specimen {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .type-specimen:last-child { border-bottom: none; }
+    .type-meta {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      margin-bottom: 6px;
+    }
+    .type-token  { font-size: 11px; font-family: 'Courier New', monospace; color: var(--accent-solid); }
+    .type-detail { font-size: 11px; color: var(--text-muted); }
+
+    /* ── Component demos ─────────────────────── */
+    .comp-demo {
+      background: var(--bg-page);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      border: 1px solid var(--border-subtle);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    /* Buttons (from tribera-ui.css) */
+    .Button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 38px;
+      padding: 8px 14px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-control);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background var(--duration-fast), border-color var(--duration-fast);
+    }
+    .Button:hover { border-color: var(--border-strong); background: color-mix(in srgb, var(--bg-control) 90%, transparent); }
+    .Button--primary { border-color: color-mix(in srgb, var(--accent-solid) 45%, transparent); background: var(--accent-solid); color: var(--text-on-accent); }
+    .Button--primary:hover { background: var(--accent-hover); color: var(--text-on-accent); }
+    .Button--ghost { background: transparent; border-color: var(--border-subtle); }
+    .Button--ghost:hover { background: color-mix(in srgb, var(--bg-control) 70%, transparent); }
+    .Button--danger { border-color: color-mix(in srgb, var(--danger) 45%, transparent); background: color-mix(in srgb, var(--danger) 72%, #000 28%); color: var(--text-inverse); }
+    .Button:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    /* Inputs */
+    .Input {
+      width: 100%;
+      min-height: 40px;
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-subtle);
+      background-color: var(--bg-control);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      outline: none;
+      appearance: none;
+      transition: border-color var(--duration-fast);
+    }
+    .Input::placeholder { color: var(--text-muted); }
+    .Input:focus { border-color: var(--accent-solid); box-shadow: var(--focus-ring); }
+    .Input:hover:not(:focus) { border-color: var(--border-strong); }
+    .TLabel {
+      display: block;
+      font-family: var(--font-sans);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      color: var(--text-secondary);
+      margin-bottom: 6px;
+    }
+
+    /* Badges */
+    .Badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      min-height: 24px;
+      padding: 4px 9px;
+      border-radius: 999px;
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-control);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      line-height: 1;
+      white-space: nowrap;
+    }
+    .Badge--success { background: var(--success-tint); color: var(--success); border-color: color-mix(in srgb, var(--success) 20%, transparent); }
+    .Badge--warning { background: var(--warning-tint); color: var(--warning); border-color: color-mix(in srgb, var(--warning) 20%, transparent); }
+    .Badge--danger  { background: var(--danger-tint);  color: var(--danger);  border-color: color-mix(in srgb, var(--danger) 20%, transparent); }
+    .Badge--info    { background: var(--info-tint);    color: var(--info);    border-color: color-mix(in srgb, var(--info) 20%, transparent); }
+    .BadgeDot { width: 6px; height: 6px; border-radius: 999px; background: currentColor; }
+
+    /* Menu */
+    .MenuSurface {
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-subtle);
+      background: color-mix(in srgb, var(--bg-surface) 84%, var(--bg-panel));
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
+      width: 220px;
+    }
+    .MenuSection { padding: 6px; }
+    .MenuDivider { height: 1px; background: var(--border-subtle); margin: 4px 0; }
+    .MenuItem {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+      padding: 9px 10px;
+      border-radius: var(--radius-xs);
+      background: transparent;
+      border: none;
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      font-size: 14px;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      cursor: pointer;
+      text-align: left;
+      transition: background var(--duration-fast);
+    }
+    .MenuItem:hover { background: color-mix(in srgb, var(--bg-control) 90%, transparent); }
+    .MenuItem--danger { color: color-mix(in srgb, var(--danger) 78%, white 22%); }
+    .MenuItem-icon { font-size: 14px; opacity: 0.7; }
+
+    /* Panel */
+    .Panel {
+      border-radius: var(--radius-lg);
+      background: var(--bg-panel);
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-soft);
+    }
+
+    /* ── App shell preview ───────────────────── */
+    .app-preview {
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+    }
+    .app-topbar {
+      background: color-mix(in srgb, var(--bg-shell) 94%, transparent);
+      border-bottom: 1px solid color-mix(in srgb, var(--border-subtle) 88%, transparent);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      min-height: 60px;
+      gap: 16px;
+    }
+    .app-topbar-brand {
+      font-family: var(--font-sans);
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      color: var(--text-primary);
+    }
+    .app-topbar-brand span { color: var(--accent-solid); }
+    .app-topbar-right { display: flex; align-items: center; gap: 10px; }
+    .app-topbar-org {
+      font-size: 12px;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+    .app-avatar {
+      width: 32px; height: 32px;
+      border-radius: var(--radius-full);
+      background: var(--accent-tint);
+      color: var(--accent-solid);
+      font-size: 12px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid color-mix(in srgb, var(--accent-solid) 20%, transparent);
+    }
+    .app-body {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      min-height: 320px;
+    }
+    .app-sidebar {
+      background: color-mix(in srgb, var(--bg-shell) 90%, transparent);
+      border-right: 1px solid var(--border-subtle);
+      padding: 16px 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .app-sidebar-ctx {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      color: var(--text-primary);
+      padding: 2px 10px 10px;
+      border-bottom: 1px solid var(--border-subtle);
+      margin-bottom: 6px;
+    }
+    .app-nav-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 10px;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      color: var(--text-secondary);
+    }
+    .app-nav-item.is-active {
+      background: var(--bg-control);
+      color: var(--accent-solid);
+      font-weight: 500;
+      border: 1px solid var(--border-subtle);
+    }
+    .app-nav-item.is-hover {
+      background: color-mix(in srgb, var(--bg-control) 60%, transparent);
+      color: var(--text-primary);
+    }
+    .app-main {
+      padding: 24px 28px;
+      background: var(--bg-page);
+    }
+    .app-main-title {
+      font-family: var(--font-display);
+      font-size: 26px;
+      font-weight: 400;
+      letter-spacing: -0.015em;
+      color: var(--text-primary);
+      line-height: 1.2;
+      margin-bottom: 4px;
+    }
+    .app-main-sub { font-size: 13px; color: var(--text-muted); margin-bottom: 20px; }
+    .app-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .app-stat {
+      background: var(--bg-panel);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+    }
+    .app-stat-label { font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 4px; }
+    .app-stat-val   { font-size: 22px; font-weight: 300; color: var(--text-primary); letter-spacing: -0.02em; }
+    .app-list-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 14px;
+      border-radius: var(--radius-sm);
+      background: var(--bg-panel);
+      border: 1px solid var(--border-subtle);
+      margin-bottom: 6px;
+    }
+    .app-list-name { font-size: 14px; font-weight: 500; letter-spacing: -0.01em; color: var(--text-primary); }
+    .app-list-meta { font-size: 12px; color: var(--text-muted); }
+
+    /* ── Principle blocks ────────────────────── */
+    .principle-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .principle-card {
+      background: var(--bg-panel);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 18px 20px;
+    }
+    .principle-icon { font-size: 20px; margin-bottom: 10px; }
+    .principle-title { font-size: 14px; font-weight: 600; color: var(--text-primary); margin-bottom: 6px; letter-spacing: -0.01em; }
+    .principle-body  { font-size: 13px; color: var(--text-secondary); font-weight: 300; line-height: 1.65; }
+
+    /* ── Do / Don't ──────────────────────────── */
+    .dd-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .dd-card { border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--border-subtle); }
+    .dd-head {
+      padding: 10px 16px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .dd-head.do   { background: var(--success-tint); color: var(--success); }
+    .dd-head.dont { background: var(--danger-tint);  color: var(--danger);  }
+    .dd-body { padding: 16px; background: var(--bg-panel); }
+    .dd-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--text-secondary);
+      font-weight: 400;
+      line-height: 1.6;
+      margin-bottom: 8px;
+    }
+    .dd-item:last-child { margin-bottom: 0; }
+    .dd-item-icon { flex-shrink: 0; margin-top: 2px; font-size: 12px; }
+
+    /* ── Spacing demo ────────────────────────── */
+    .spacing-demo { display: flex; flex-direction: column; gap: 8px; }
+    .spacing-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .spacing-bar {
+      background: var(--accent-tint);
+      border: 1.5px solid var(--accent-mid);
+      border-radius: 3px;
+      height: 20px;
+    }
+    .spacing-meta { display: flex; gap: 8px; align-items: center; }
+    .spacing-token { font-size: 11px; font-family: 'Courier New', monospace; color: var(--accent-solid); min-width: 80px; }
+    .spacing-px    { font-size: 11px; color: var(--text-muted); min-width: 34px; }
+
+    /* ── Footer ──────────────────────────────── */
+    .ds-footer {
+      margin-top: 80px;
+      padding-top: 28px;
+      border-top: 1px solid var(--border-subtle);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .ds-footer-txt { font-size: 12px; color: var(--text-muted); font-weight: 400; }
+
+    @media (max-width: 800px) {
+      .ds-shell { grid-template-columns: 1fr; }
+      .ds-nav { display: none; }
+      .ds-main { padding: 40px 24px 80px; }
+      .ds-grid-2, .ds-grid-3 { grid-template-columns: 1fr; }
+      .app-body { grid-template-columns: 1fr; }
+      .app-sidebar { display: none; }
+      .principle-grid, .dd-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="ds-shell">
+
+  <!-- ── Sidebar ──────────────────────────────── -->
+  <nav class="ds-nav">
+    <div class="ds-nav-brand">Trib<span>era</span></div>
+    <div class="ds-nav-group-label">Design</div>
+    <a class="ds-nav-link active" href="#principles"><div class="ds-nav-dot"></div> Principles</a>
+    <a class="ds-nav-link" href="#shell-preview"><div class="ds-nav-dot"></div> App Shell</a>
+    <div class="ds-nav-group-label">Tokens</div>
+    <a class="ds-nav-link" href="#color"><div class="ds-nav-dot"></div> Color</a>
+    <a class="ds-nav-link" href="#surfaces"><div class="ds-nav-dot"></div> Surfaces</a>
+    <a class="ds-nav-link" href="#typography"><div class="ds-nav-dot"></div> Typography</a>
+    <a class="ds-nav-link" href="#radius"><div class="ds-nav-dot"></div> Radius</a>
+    <a class="ds-nav-link" href="#spacing"><div class="ds-nav-dot"></div> Spacing</a>
+    <div class="ds-nav-group-label">Components</div>
+    <a class="ds-nav-link" href="#buttons"><div class="ds-nav-dot"></div> Buttons</a>
+    <a class="ds-nav-link" href="#inputs"><div class="ds-nav-dot"></div> Inputs</a>
+    <a class="ds-nav-link" href="#badges"><div class="ds-nav-dot"></div> Badges</a>
+    <a class="ds-nav-link" href="#menus"><div class="ds-nav-dot"></div> Menus</a>
+    <div class="ds-nav-group-label">Guidance</div>
+    <a class="ds-nav-link" href="#do-dont"><div class="ds-nav-dot"></div> Do / Don't</a>
+  </nav>
+
+  <!-- ── Main ───────────────────────────────────── -->
+  <main class="ds-main">
+
+    <!-- Header -->
+    <div class="ds-header">
+      <div class="ds-eyebrow">Design System · v2.0</div>
+      <h1>Tribera<br><em>Design Reference</em></h1>
+      <p>A warm, grounded SaaS UI system for housing associations. Structural clarity over decoration. One cohesive light theme.</p>
+      <div class="ds-header-meta">
+        <span class="ds-meta-chip">Lora (display)</span>
+        <span class="ds-meta-chip">Outfit (UI)</span>
+        <span class="ds-meta-chip">Sage · Amber · Rust</span>
+        <span class="ds-meta-chip">March 2026</span>
+      </div>
+    </div>
+
+
+    <!-- ═══ Principles ══════════════════════════ -->
+    <div class="ds-section" id="principles">
+      <div class="ds-section-head">
+        <span class="ds-section-label">01</span>
+        <div class="ds-divider"></div>
+      </div>
+      <div class="ds-section-title">Design Principles</div>
+      <div class="ds-section-sub" style="margin-bottom:24px;">Five directives that guide every decision in the system.</div>
+      <div class="principle-grid">
+        <div class="principle-card">
+          <div class="principle-icon">🏛️</div>
+          <div class="principle-title">App shell first</div>
+          <div class="principle-body">Persistent UI structure — header, sidebar, framing — should feel architectural, not decorative. Rely on spacing, alignment, and subtle contrast.</div>
+        </div>
+        <div class="principle-card">
+          <div class="principle-icon">📐</div>
+          <div class="principle-title">Surface hierarchy over visual effects</div>
+          <div class="principle-body">Hierarchy comes from surface levels, border restraint, spacing, and typography — not blur, glow, or oversized rounded wrappers.</div>
+        </div>
+        <div class="principle-card">
+          <div class="principle-icon">🎛️</div>
+          <div class="principle-title">Quiet controls</div>
+          <div class="principle-body">Buttons, inputs, and menu triggers should feel dependable and compact. They should not visually overpower content.</div>
+        </div>
+        <div class="principle-card">
+          <div class="principle-icon">📦</div>
+          <div class="principle-title">Panels, not ornaments</div>
+          <div class="principle-body">Content containers are panels. They separate information cleanly without competing with navigation or controls for attention.</div>
+        </div>
+        <div class="principle-card" style="grid-column: 1 / -1;">
+          <div class="principle-icon">🔁</div>
+          <div class="principle-title">Consistency beats novelty</div>
+          <div class="principle-body">When choosing between a more expressive pattern and a more consistent one, always prefer consistency. Tribera grows through repeatable primitives, not one-off ideas.</div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ═══ App Shell Preview ════════════════════ -->
+    <div class="ds-section" id="shell-preview">
+      <div class="ds-section-head">
+        <span class="ds-section-label">02</span>
+        <div class="ds-divider"></div>
+      </div>
+      <div class="ds-section-title">App Shell</div>
+      <div class="ds-section-sub" style="margin-bottom:24px;">How the surface hierarchy looks assembled into a real app screen. Topbar (shell) → Sidebar (shell) → Page (page) → Panels (panel).</div>
+
+      <div class="app-preview">
+        <!-- Topbar -->
+        <div class="app-topbar">
+          <div style="display:flex;align-items:center;gap:16px;">
+            <div class="app-topbar-brand">Trib<span>era</span></div>
+            <div style="width:1px;height:18px;background:var(--border-subtle);"></div>
+            <div style="font-size:13px;color:var(--text-secondary);font-weight:400;letter-spacing:-0.01em;">Plattform</div>
+          </div>
+          <div class="app-topbar-right">
+            <div class="app-topbar-org">Jens Marions</div>
+            <div class="app-avatar">JM</div>
+          </div>
+        </div>
+
+        <!-- Body -->
+        <div class="app-body">
+          <!-- Sidebar -->
+          <div class="app-sidebar">
+            <div class="app-sidebar-ctx">Plattform</div>
+            <div class="app-nav-item"><span>📊</span> Dashboard</div>
+            <div class="app-nav-item is-active"><span>🏢</span> Organisationer</div>
+            <div class="app-nav-item"><span>👤</span> Administratörer</div>
+            <div style="height:1px;background:var(--border-subtle);margin:8px 0;"></div>
+            <div style="font-size:10px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--text-muted);padding:4px 10px;">Konto</div>
+            <div class="app-nav-item"><span>⚙️</span> Inställningar</div>
+          </div>
+
+          <!-- Main -->
+          <div class="app-main">
+            <div class="app-main-title">Organisationer</div>
+            <div class="app-main-sub">4 organisationer · Senast uppdaterad idag</div>
+            <div class="app-stats">
+              <div class="app-stat">
+                <div class="app-stat-label">Organisationer</div>
+                <div class="app-stat-val">4</div>
+              </div>
+              <div class="app-stat">
+                <div class="app-stat-label">Byggnader</div>
+                <div class="app-stat-val">11</div>
+              </div>
+              <div class="app-stat">
+                <div class="app-stat-label">Aktiva admins</div>
+                <div class="app-stat-val">6</div>
+              </div>
+            </div>
+            <div class="app-list-item">
+              <span class="app-list-name">Tribe Condo Association</span>
+              <span class="Badge Badge--success"><span class="BadgeDot"></span> Aktiv</span>
+            </div>
+            <div class="app-list-item">
+              <span class="app-list-name">BRF Fireville</span>
+              <span class="Badge Badge--success"><span class="BadgeDot"></span> Aktiv</span>
+            </div>
+            <div class="app-list-item" style="opacity:.6;">
+              <span class="app-list-name">Org New</span>
+              <span class="Badge">Utkast</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ═══ Color ══════════════════════════════ -->
+    <div class="ds-section" id="color">
+      <div class="ds-section-head">
+        <span class="ds-section-label">03</span>
+        <div class="ds-divider"></div>
+      </div>
+      <div class="ds-section-title">Color Palette</div>
+      <div class="ds-section-sub" style="margin-bottom:24px;">One warm light palette. Grounded in natural materials — cream, parchment, sage, amber, rust.</div>
+
+      <div class="ds-grid ds-grid-2" style="margin-bottom:24px;">
+        <div class="ds-card">
+          <div class="ds-card-head">
+            <span class="ds-card-title">Neutrals — Warm Ground</span>
+          </div>
+          <div class="ds-card-body">
+            <div class="swatch-grid">
+              <div class="swatch"><div class="swatch-color" style="background:#F7F3EC;"></div><div class="swatch-info"><span class="swatch-name">Cream</span><span class="swatch-hex">#F7F3EC</span></div></div>
+              <div class="swatch"><div class="swatch-color" style="background:#EDE8DF;"></div><div class="swatch-info"><span class="swatch-name">Ivory</span><span class="swatch-hex">#EDE8DF</span></div></div>
+              <div class="swatch"><div class="swatch-color" style="background:#E4DDD1;"></div><div class="swatch-info"><span class="swatch-name">Parchment</span><span class="swatch-hex">#E4DDD1</span></div></div>
+              <div class="swatch"><div class="swatch-color" style="background:#D6CEBD;"></div><div class="swatch-info"><span class="swatch-name">Sand</span><span class="swatch-hex">#D6CEBD</span></div></div>
+              <div class="swatch"><div class="swatch-color" style="background:#B5AC9E;"></div><div class="swatch-info"><span class="swatch-name">Stone</span><span class="swatch-hex">#B5AC9E</span></div></div>
+              <div class="swatch"><div class="swatch-color" style="background:#6B5F52;"></div><div class="swatch-info"><span class="swatch-name">Bark</span><span class="swatch-hex">#6B5F52</span></div></div>
+              <div class="swatch"><div class="swatch-color" style="background:#2E2419;"></div><div class="swatch-info"><span class="swatch-name">Earth</span><span class="swatch-hex">#2E2419</span></div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ds-card">
+          <div class="ds-card-head">
+            <span class="ds-card-title">Accent — Sage, Amber, Rust</span>
+          </div>
+          <div class="ds-card-body">
+            <div class="swatch-grid">
+              <div class="swatch"><div class="swatch-color" style="background:#4E7260;"></div><div class="swatch-info"><span class="swatch-name">Sage</span><span class="swatch-hex">#4E7260</span></div></div>
+              <div class="swatch"><div class="swatch-color" style="background:#8BB5A0;"></div><div class="swatch-info"><span class="swatch-name">Sage mid</span><span class="swatch-hex">#8BB5A0</span></div></div>
+              <div class="swatch"><div class="swatch-color" style="background:#E3EDE8;"></div><div class="swatch-info"><span class="swatch-name">Sage tint</span><span class="swatch-hex">#E3EDE8</span></div></div>
+              <div class="swatch"><div class="swatch-color" style="background:#C97D2E;"></div><div class="swatch-info"><span class="swatch-name">Amber</span><span class="swatch-hex">#C97D2E</span></div></div>
+              <div class="swatch"><div class="swatch-color" style="background:#F5EAD8;"></div><div class="swatch-info"><span class="swatch-name">Amber tint</span><span class="swatch-hex">#F5EAD8</span></div></div>
+              <div class="swatch"><div class="swatch-color" style="background:#A84F30;"></div><div class="swatch-info"><span class="swatch-name">Rust</span><span class="swatch-hex">#A84F30</span></div></div>
+              <div class="swatch"><div class="swatch-color" style="background:#FAE8E2;"></div><div class="swatch-info"><span class="swatch-name">Rust tint</span><span class="swatch-hex">#FAE8E2</span></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Status colors -->
+      <div class="ds-card">
+        <div class="ds-card-head"><span class="ds-card-title">Status Tokens</span></div>
+        <div class="ds-card-body">
+          <div style="display:flex;gap:10px;flex-wrap:wrap;">
+            <span class="Badge Badge--success"><span class="BadgeDot"></span> Success</span>
+            <span class="Badge Badge--warning"><span class="BadgeDot"></span> Warning</span>
+            <span class="Badge Badge--danger"><span class="BadgeDot"></span> Danger</span>
+            <span class="Badge Badge--info"><span class="BadgeDot"></span> Info</span>
+            <span class="Badge">Default</span>
+          </div>
+          <div style="margin-top:16px;" class="token-list">
+            <div class="token-row"><span class="token-name">--success</span><span class="token-value">#4E7260 (sage)</span><div class="token-preview" style="background:#4E7260;"></div></div>
+            <div class="token-row"><span class="token-name">--warning</span><span class="token-value">#C97D2E (amber)</span><div class="token-preview" style="background:#C97D2E;"></div></div>
+            <div class="token-row"><span class="token-name">--danger</span><span class="token-value">#A84F30 (rust)</span><div class="token-preview" style="background:#A84F30;"></div></div>
+            <div class="token-row"><span class="token-name">--info</span><span class="token-value">#6B8FAB (sky)</span><div class="token-preview" style="background:#6B8FAB;"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ═══ Surfaces ══════════════════════════ -->
+    <div class="ds-section" id="surfaces">
+      <div class="ds-section-head">
+        <span class="ds-section-label">04</span>
+        <div class="ds-divider"></div>
+      </div>
+      <div class="ds-section-title">Surface Hierarchy</div>
+      <div class="ds-section-sub" style="margin-bottom:24px;">Six distinct surface levels. Treat them as layers of UI meaning, not interchangeable colors.</div>
+
+      <div class="surface-stack">
+        <div class="surface-layer" style="background:var(--bg-page);">
+          <div class="surface-info">
+            <div class="surface-name">Page</div>
+            <div class="surface-desc">Global application canvas. The base layer everything sits on.</div>
+            <div class="surface-token">--bg-page · #F7F3EC</div>
+          </div>
+          <div class="ds-tag ds-tag-token">bg-page</div>
+        </div>
+        <div class="surface-layer" style="background:var(--bg-shell);">
+          <div class="surface-info">
+            <div class="surface-name">Shell</div>
+            <div class="surface-desc">Persistent structure — header, sidebar, sticky framing. Architectural, not decorative.</div>
+            <div class="surface-token">--bg-shell · rgba(237,232,223,0.82)</div>
+          </div>
+          <div class="ds-tag ds-tag-token">bg-shell</div>
+        </div>
+        <div class="surface-layer" style="background:var(--bg-surface);">
+          <div class="surface-info">
+            <div class="surface-name">Surface</div>
+            <div class="surface-desc">White surface cards, modals, overlays with slight opacity.</div>
+            <div class="surface-token">--bg-surface · rgba(255,255,255,0.95)</div>
+          </div>
+          <div class="ds-tag ds-tag-token">bg-surface</div>
+        </div>
+        <div class="surface-layer" style="background:var(--bg-panel);">
+          <div class="surface-info">
+            <div class="surface-name">Panel</div>
+            <div class="surface-desc">Solid white content containers — dashboard sections, settings groups, forms.</div>
+            <div class="surface-token">--bg-panel · #FFFFFF</div>
+          </div>
+          <div class="ds-tag ds-tag-token">bg-panel</div>
+        </div>
+        <div class="surface-layer" style="background:var(--bg-control);">
+          <div class="surface-info">
+            <div class="surface-name">Control</div>
+            <div class="surface-desc">Interactive elements — inputs, buttons, dropdown triggers.</div>
+            <div class="surface-token">--bg-control · rgba(228,221,209,0.55)</div>
+          </div>
+          <div class="ds-tag ds-tag-token">bg-control</div>
+        </div>
+        <div class="surface-layer" style="background:var(--bg-elevated);box-shadow:var(--shadow-soft);">
+          <div class="surface-info">
+            <div class="surface-name">Elevated</div>
+            <div class="surface-desc">Dropdowns, modals — highest layer, uses shadow to communicate lift.</div>
+            <div class="surface-token">--bg-elevated · #FFFFFF + shadow</div>
+          </div>
+          <div class="ds-tag ds-tag-token">bg-elevated</div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ═══ Typography ═════════════════════════ -->
+    <div class="ds-section" id="typography">
+      <div class="ds-section-head">
+        <span class="ds-section-label">05</span>
+        <div class="ds-divider"></div>
+      </div>
+      <div class="ds-section-title">Typography</div>
+      <div class="ds-section-sub" style="margin-bottom:24px;">Two-font system. Lora carries warmth at the page level. Outfit handles all UI clearly.</div>
+
+      <div class="ds-grid ds-grid-2" style="margin-bottom:20px;">
+        <div class="ds-card">
+          <div class="ds-card-head"><span class="ds-card-title">Lora — Display</span><span class="ds-tag ds-tag-lora">Serif</span></div>
+          <div class="ds-card-body">
+            <div class="type-specimen">
+              <div class="type-meta"><span class="type-token">h1 / page title</span><span class="type-detail">36px · 400 · -0.015em</span></div>
+              <div style="font-family:var(--font-display);font-size:36px;font-weight:400;line-height:1.2;letter-spacing:-0.015em;color:var(--text-primary);">Organisationer</div>
+            </div>
+            <div class="type-specimen">
+              <div class="type-meta"><span class="type-token">h2 / section head</span><span class="type-detail">22px · 400</span></div>
+              <div style="font-family:var(--font-display);font-size:22px;font-weight:400;line-height:1.3;color:var(--text-primary);">Aktiva BRF-föreningar</div>
+            </div>
+            <div class="type-specimen">
+              <div class="type-meta"><span class="type-token">italic variant</span></div>
+              <div style="font-family:var(--font-display);font-size:22px;font-weight:400;font-style:italic;color:var(--accent-solid);">Välkommen tillbaka</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ds-card">
+          <div class="ds-card-head"><span class="ds-card-title">Outfit — UI</span><span class="ds-tag ds-tag-outfit">Sans-serif</span></div>
+          <div class="ds-card-body">
+            <div class="type-specimen">
+              <div class="type-meta"><span class="type-token">--text-base</span><span class="type-detail">15px · 400 · -0.01em</span></div>
+              <div style="font-size:15px;font-weight:400;letter-spacing:-0.01em;color:var(--text-secondary);line-height:1.65;">Organisationsnamn och metadata visas tydligt.</div>
+            </div>
+            <div class="type-specimen">
+              <div class="type-meta"><span class="type-token">--text-sm</span><span class="type-detail">13px · 500 · -0.01em</span></div>
+              <div style="font-size:13px;font-weight:500;letter-spacing:-0.01em;color:var(--text-primary);">Sidebar navigation · Button label</div>
+            </div>
+            <div class="type-specimen">
+              <div class="type-meta"><span class="type-token">--text-xs</span><span class="type-detail">11px · 600 · 0.07em · uppercase</span></div>
+              <div style="font-size:11px;font-weight:600;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);">BYGGNADER · AKTIV SEDAN · STATUS</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ds-card">
+        <div class="ds-card-head"><span class="ds-card-title">Type Scale</span><span class="ds-tag ds-tag-outfit">Tokens</span></div>
+        <div class="ds-card-body">
+          <div class="token-list">
+            <div class="token-row"><span class="token-name">--text-xs</span><span class="token-value">11px</span><span style="font-size:11px;color:var(--text-muted);">Aa</span></div>
+            <div class="token-row"><span class="token-name">--text-sm</span><span class="token-value">13px</span><span style="font-size:13px;color:var(--text-muted);">Aa</span></div>
+            <div class="token-row"><span class="token-name">--text-base</span><span class="token-value">15px</span><span style="font-size:15px;color:var(--text-muted);">Aa</span></div>
+            <div class="token-row"><span class="token-name">--text-md</span><span class="token-value">17px</span><span style="font-size:17px;color:var(--text-muted);">Aa</span></div>
+            <div class="token-row"><span class="token-name">--text-lg</span><span class="token-value">20px</span><span style="font-size:20px;color:var(--text-muted);">Aa</span></div>
+            <div class="token-row"><span class="token-name">--text-xl</span><span class="token-value">24px</span><span style="font-size:24px;color:var(--text-muted);">Aa</span></div>
+            <div class="token-row"><span class="token-name">--text-2xl</span><span class="token-value">30px</span><span style="font-size:30px;color:var(--text-muted);">Aa</span></div>
+            <div class="token-row"><span class="token-name">--text-3xl</span><span class="token-value">38px</span><span style="font-size:38px;color:var(--text-muted);">Aa</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ═══ Radius ═════════════════════════════ -->
+    <div class="ds-section" id="radius">
+      <div class="ds-section-head">
+        <span class="ds-section-label">06</span>
+        <div class="ds-divider"></div>
+      </div>
+      <div class="ds-section-title">Radius Scale</div>
+      <div class="ds-section-sub" style="margin-bottom:24px;">A disciplined shape language. Softer but not sloppy. Each step has a specific purpose.</div>
+
+      <div class="ds-card">
+        <div class="ds-card-body">
+          <div class="radius-demo">
+            <div class="radius-box">
+              <div class="radius-shape" style="width:48px;height:48px;border-radius:6px;"></div>
+              <div class="radius-label">xs</div>
+              <div class="radius-value">6px</div>
+              <div style="font-size:11px;color:var(--text-muted);text-align:center;max-width:80px;">Menu items</div>
+            </div>
+            <div class="radius-box">
+              <div class="radius-shape" style="width:64px;height:48px;border-radius:10px;"></div>
+              <div class="radius-label">sm</div>
+              <div class="radius-value">10px</div>
+              <div style="font-size:11px;color:var(--text-muted);text-align:center;max-width:80px;">Controls, inputs</div>
+            </div>
+            <div class="radius-box">
+              <div class="radius-shape" style="width:80px;height:56px;border-radius:14px;"></div>
+              <div class="radius-label">md</div>
+              <div class="radius-value">14px</div>
+              <div style="font-size:11px;color:var(--text-muted);text-align:center;max-width:80px;">Menus, small containers</div>
+            </div>
+            <div class="radius-box">
+              <div class="radius-shape" style="width:100px;height:64px;border-radius:20px;"></div>
+              <div class="radius-label">lg</div>
+              <div class="radius-value">20px</div>
+              <div style="font-size:11px;color:var(--text-muted);text-align:center;max-width:80px;">Main panels, cards</div>
+            </div>
+            <div class="radius-box">
+              <div class="radius-shape" style="width:120px;height:72px;border-radius:28px;"></div>
+              <div class="radius-label">xl</div>
+              <div class="radius-value">28px</div>
+              <div style="font-size:11px;color:var(--text-muted);text-align:center;max-width:80px;">Special containers</div>
+            </div>
+            <div class="radius-box">
+              <div class="radius-shape" style="width:72px;height:36px;border-radius:9999px;"></div>
+              <div class="radius-label">full</div>
+              <div class="radius-value">9999px</div>
+              <div style="font-size:11px;color:var(--text-muted);text-align:center;max-width:80px;">Badges, chips, avatars</div>
+            </div>
+          </div>
+          <div style="margin-top:20px;padding:14px 16px;background:var(--warning-tint);border-radius:var(--radius-sm);border:1px solid color-mix(in srgb, var(--warning) 20%, transparent);">
+            <span style="font-size:13px;color:var(--warning);font-weight:500;">⚠️ Pill rule:</span>
+            <span style="font-size:13px;color:var(--text-secondary);font-weight:300;"> Full radius (999px) is reserved for badges, chips, avatars only. Never use on headers, layout wrappers, or major containers.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ═══ Spacing ═══════════════════════════ -->
+    <div class="ds-section" id="spacing">
+      <div class="ds-section-head">
+        <span class="ds-section-label">07</span>
+        <div class="ds-divider"></div>
+      </div>
+      <div class="ds-section-title">Spacing Scale</div>
+      <div class="ds-section-sub" style="margin-bottom:24px;">Base-4 spacing scale. Use tokens over ad hoc values.</div>
+
+      <div class="ds-card">
+        <div class="ds-card-body">
+          <div class="spacing-demo">
+            <div class="spacing-row"><div class="spacing-bar" style="width:4px;"></div><div class="spacing-meta"><span class="spacing-token">--space-1</span><span class="spacing-px">4px</span></div></div>
+            <div class="spacing-row"><div class="spacing-bar" style="width:8px;"></div><div class="spacing-meta"><span class="spacing-token">--space-2</span><span class="spacing-px">8px</span></div></div>
+            <div class="spacing-row"><div class="spacing-bar" style="width:12px;"></div><div class="spacing-meta"><span class="spacing-token">--space-3</span><span class="spacing-px">12px</span></div></div>
+            <div class="spacing-row"><div class="spacing-bar" style="width:16px;"></div><div class="spacing-meta"><span class="spacing-token">--space-4</span><span class="spacing-px">16px</span></div></div>
+            <div class="spacing-row"><div class="spacing-bar" style="width:20px;"></div><div class="spacing-meta"><span class="spacing-token">--space-5</span><span class="spacing-px">20px</span></div></div>
+            <div class="spacing-row"><div class="spacing-bar" style="width:24px;"></div><div class="spacing-meta"><span class="spacing-token">--space-6</span><span class="spacing-px">24px</span></div></div>
+            <div class="spacing-row"><div class="spacing-bar" style="width:32px;"></div><div class="spacing-meta"><span class="spacing-token">--space-8</span><span class="spacing-px">32px</span></div></div>
+            <div class="spacing-row"><div class="spacing-bar" style="width:40px;"></div><div class="spacing-meta"><span class="spacing-token">--space-10</span><span class="spacing-px">40px</span></div></div>
+            <div class="spacing-row"><div class="spacing-bar" style="width:48px;"></div><div class="spacing-meta"><span class="spacing-token">--space-12</span><span class="spacing-px">48px</span></div></div>
+            <div class="spacing-row"><div class="spacing-bar" style="width:64px;"></div><div class="spacing-meta"><span class="spacing-token">--space-16</span><span class="spacing-px">64px</span></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ═══ Buttons ═══════════════════════════ -->
+    <div class="ds-section" id="buttons">
+      <div class="ds-section-head">
+        <span class="ds-section-label">08</span>
+        <div class="ds-divider"></div>
+      </div>
+      <div class="ds-section-title">Buttons</div>
+      <div class="ds-section-sub" style="margin-bottom:24px;">Four variants. Job is action clarity, not visual spectacle.</div>
+
+      <div class="ds-grid ds-grid-2">
+        <div class="ds-card">
+          <div class="ds-card-head"><span class="ds-card-title">All Variants</span></div>
+          <div class="ds-card-body">
+            <div class="comp-demo">
+              <button class="Button Button--primary">Lägg till</button>
+              <button class="Button">Standard</button>
+              <button class="Button Button--ghost">Avbryt</button>
+              <button class="Button Button--danger">Ta bort</button>
+              <button class="Button" disabled>Inaktiv</button>
+            </div>
+          </div>
+        </div>
+        <div class="ds-card">
+          <div class="ds-card-head"><span class="ds-card-title">Usage Rules</span></div>
+          <div class="ds-card-body" style="display:flex;flex-direction:column;gap:8px;">
+            <div class="token-row"><span class="token-name">.Button--primary</span><span style="font-size:12px;color:var(--text-secondary);">One main action per screen</span></div>
+            <div class="token-row"><span class="token-name">.Button</span><span style="font-size:12px;color:var(--text-secondary);">Secondary supporting actions</span></div>
+            <div class="token-row"><span class="token-name">.Button--ghost</span><span style="font-size:12px;color:var(--text-secondary);">Quiet / cancel actions</span></div>
+            <div class="token-row"><span class="token-name">.Button--danger</span><span style="font-size:12px;color:var(--text-secondary);">Destructive operations only</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ═══ Inputs ════════════════════════════ -->
+    <div class="ds-section" id="inputs">
+      <div class="ds-section-head">
+        <span class="ds-section-label">09</span>
+        <div class="ds-divider"></div>
+      </div>
+      <div class="ds-section-title">Inputs</div>
+      <div class="ds-section-sub" style="margin-bottom:24px;">Robust and readable. Autofill-hardened. Clear focus, not loud focus.</div>
+
+      <div class="ds-grid ds-grid-2">
+        <div class="ds-card">
+          <div class="ds-card-head"><span class="ds-card-title">States</span></div>
+          <div class="ds-card-body" style="display:flex;flex-direction:column;gap:14px;">
+            <div>
+              <label class="TLabel">Organisationsnamn</label>
+              <input class="Input" placeholder="T.ex. BRF Solberga">
+            </div>
+            <div>
+              <label class="TLabel">E-postadress (fokuserat)</label>
+              <input class="Input" value="jens@tribera.se" style="border-color:var(--accent-solid);box-shadow:var(--focus-ring);">
+            </div>
+            <div>
+              <label class="TLabel">Deaktiverat</label>
+              <input class="Input" placeholder="Kan ej redigeras" disabled style="opacity:0.5;cursor:not-allowed;">
+            </div>
+          </div>
+        </div>
+        <div class="ds-card">
+          <div class="ds-card-head"><span class="ds-card-title">Rules</span></div>
+          <div class="ds-card-body" style="display:flex;flex-direction:column;gap:8px;">
+            <div class="token-row"><span style="font-size:12px;color:var(--text-primary);">✓</span><span style="font-size:12px;color:var(--text-secondary);">Always include a label when meaning is not obvious</span></div>
+            <div class="token-row"><span style="font-size:12px;color:var(--text-primary);">✓</span><span style="font-size:12px;color:var(--text-secondary);">Focus state clear — sage border + ring</span></div>
+            <div class="token-row"><span style="font-size:12px;color:var(--text-primary);">✓</span><span style="font-size:12px;color:var(--text-secondary);">Autofill override preserves bg-control color</span></div>
+            <div class="token-row"><span style="font-size:12px;color:var(--danger);">✗</span><span style="font-size:12px;color:var(--text-secondary);">No decorative framing around inputs</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ═══ Badges ════════════════════════════ -->
+    <div class="ds-section" id="badges">
+      <div class="ds-section-head">
+        <span class="ds-section-label">10</span>
+        <div class="ds-divider"></div>
+      </div>
+      <div class="ds-section-title">Badges</div>
+      <div class="ds-section-sub" style="margin-bottom:24px;">One of the few places pill treatment is explicitly correct. Short status or metadata only.</div>
+
+      <div class="ds-card">
+        <div class="ds-card-body">
+          <div class="comp-demo">
+            <span class="Badge Badge--success"><span class="BadgeDot"></span> Aktiv</span>
+            <span class="Badge Badge--warning"><span class="BadgeDot"></span> Väntar</span>
+            <span class="Badge Badge--danger"><span class="BadgeDot"></span> Inaktiv</span>
+            <span class="Badge Badge--info"><span class="BadgeDot"></span> Granskas</span>
+            <span class="Badge">Utkast</span>
+            <span class="Badge">Admin</span>
+            <span class="Badge">2 byggnader</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ═══ Menus ══════════════════════════════ -->
+    <div class="ds-section" id="menus">
+      <div class="ds-section-head">
+        <span class="ds-section-label">11</span>
+        <div class="ds-divider"></div>
+      </div>
+      <div class="ds-section-title">Menus</div>
+      <div class="ds-section-sub" style="margin-bottom:24px;">Elevated but compact. Functional overlays — not decorative cards.</div>
+
+      <div class="ds-grid ds-grid-2">
+        <div class="ds-card">
+          <div class="ds-card-head"><span class="ds-card-title">MenuSurface</span></div>
+          <div class="ds-card-body">
+            <div class="MenuSurface">
+              <div class="MenuSection">
+                <button class="MenuItem"><span class="MenuItem-icon">👤</span> Profil</button>
+                <button class="MenuItem"><span class="MenuItem-icon">⚙️</span> Inställningar</button>
+                <button class="MenuItem"><span class="MenuItem-icon">❓</span> Hjälp</button>
+              </div>
+              <div class="MenuDivider"></div>
+              <div class="MenuSection">
+                <button class="MenuItem MenuItem--danger"><span class="MenuItem-icon">↩</span> Logga ut</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ds-card">
+          <div class="ds-card-head"><span class="ds-card-title">Rules</span></div>
+          <div class="ds-card-body" style="display:flex;flex-direction:column;gap:8px;">
+            <div class="token-row"><span style="font-size:12px;color:var(--text-primary);">✓</span><span style="font-size:12px;color:var(--text-secondary);">Use MenuSurface for all floating overlays</span></div>
+            <div class="token-row"><span style="font-size:12px;color:var(--text-primary);">✓</span><span style="font-size:12px;color:var(--text-secondary);">Hover = background only, no ornamental effects</span></div>
+            <div class="token-row"><span style="font-size:12px;color:var(--text-primary);">✓</span><span style="font-size:12px;color:var(--text-secondary);">Danger items clearly separated with divider</span></div>
+            <div class="token-row"><span style="font-size:12px;color:var(--danger);">✗</span><span style="font-size:12px;color:var(--text-secondary);">Don't style as a decorative card — keep it crisp</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ═══ Do / Don't ════════════════════════ -->
+    <div class="ds-section" id="do-dont">
+      <div class="ds-section-head">
+        <span class="ds-section-label">12</span>
+        <div class="ds-divider"></div>
+      </div>
+      <div class="ds-section-title">Do / Don't</div>
+      <div class="ds-section-sub" style="margin-bottom:24px;">Anti-drift rules. When uncertainty arises, choose the calmer, more structural option.</div>
+
+      <div class="dd-grid">
+        <div class="dd-card">
+          <div class="dd-head do">✓ Do</div>
+          <div class="dd-body">
+            <div class="dd-item"><span class="dd-item-icon">✓</span> Use existing primitives from tribera-ui.css</div>
+            <div class="dd-item"><span class="dd-item-icon">✓</span> Follow the shell/panel/control separation strictly</div>
+            <div class="dd-item"><span class="dd-item-icon">✓</span> Use <code style="font-size:11px;background:var(--accent-tint);padding:1px 5px;border-radius:3px;color:var(--accent-solid);">.Panel</code> as the preferred semantic name for content containers</div>
+            <div class="dd-item"><span class="dd-item-icon">✓</span> Extend system semantically — fill reusable gaps only</div>
+            <div class="dd-item"><span class="dd-item-icon">✓</span> Use spacing and typography to create hierarchy before adding framing</div>
+            <div class="dd-item"><span class="dd-item-icon">✓</span> Keep badge content short — status or metadata</div>
+          </div>
+        </div>
+        <div class="dd-card">
+          <div class="dd-head dont">✗ Don't</div>
+          <div class="dd-body">
+            <div class="dd-item"><span class="dd-item-icon">✗</span> Introduce new arbitrary radius values</div>
+            <div class="dd-item"><span class="dd-item-icon">✗</span> Use pill treatment on headers or layout wrappers</div>
+            <div class="dd-item"><span class="dd-item-icon">✗</span> Add glass-heavy blur treatments</div>
+            <div class="dd-item"><span class="dd-item-icon">✗</span> Invent one-off card variants for isolated screens</div>
+            <div class="dd-item"><span class="dd-item-icon">✗</span> Use gradient as the default shell background</div>
+            <div class="dd-item"><span class="dd-item-icon">✗</span> Use <code style="font-size:11px;background:var(--danger-tint);padding:1px 5px;border-radius:3px;color:var(--danger);">.GlassCard</code> in new work — it's a legacy alias</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Footer -->
+    <div class="ds-footer">
+      <span class="ds-footer-txt">Tribera Design System v2.0 · March 2026</span>
+      <span class="ds-footer-txt">tribera-theme.css + tribera-ui.css</span>
+    </div>
+
+  </main>
+</div>
+
+<script>
+  // Active nav highlight on scroll
+  const links = document.querySelectorAll('.ds-nav-link');
+  const sections = document.querySelectorAll('.ds-section[id]');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        links.forEach(l => l.classList.remove('active'));
+        const active = document.querySelector(`.ds-nav-link[href="#${entry.target.id}"]`);
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+
+  sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>
