@@ -41,6 +41,7 @@ python3 -m http.server 8000
 
 - **Raw Downloads (Ignored by Git):** `.local_photos/[Year]/[destination]-[month]/`
 - **Permanent Images (Tracked by Git):** `assets/images/[Year]/[destination]-[month]/`
+- **Automated Processing:** The engine automatically converts all images to **WebP** (optimized for speed) and **strips all GPS/EXIF metadata** before moving them to the permanent assets folder to ensure your family's privacy.
 - **Blog Posts:** `posts/[Year]/[destination]-[month].html`
 - **Homepage Automation:** The engine automatically updates `index.html` with:
     - The "Star" image for the destination card.
