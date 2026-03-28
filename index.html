@@ -60,106 +60,49 @@
     <section id="destinations" class="section-padding">
         <div class="container">
             <div class="section-title">
-                <h2>Our Interactive Journey</h2>
-                <p>Pulse points of memories across two continents.</p>
+                <h2>Where do you want to go?</h2>
+                <p>Curated guides for the modern traveler.</p>
             </div>
-
-            <div id="sensory-map">
-                <div class="map-container">
-                    <div id="map-tooltip" class="map-tooltip"></div>
-                    
-                    <!-- SIMPLIFIED EUROPE SVG WITH CITY PINS -->
-                    <svg viewBox="0 0 1000 600" class="map-svg">
-                        <!-- Background Countries (Representative Shapes) -->
-                        <path id="FR" d="M380,350 L420,340 L450,380 L440,430 L390,440 Z" /> <!-- France -->
-                        <path id="IT" d="M480,450 L510,440 L540,520 L560,580 L520,580 L500,500 Z" /> <!-- Italy -->
-                        <path id="DE" d="M420,340 L480,330 L500,280 L450,270 Z" /> <!-- Germany -->
-                        <path id="CZ" d="M480,330 L520,330 L530,360 L490,360 Z" /> <!-- Czech Rep -->
-                        <path id="AT" d="M490,360 L540,360 L550,390 L500,390 Z" /> <!-- Austria -->
-                        <path id="NL" d="M410,300 L430,300 L430,320 L410,320 Z" /> <!-- Netherlands -->
-                        <path id="BE" d="M400,330 L420,330 L420,350 L400,350 Z" /> <!-- Belgium -->
-                        <path id="SE" d="M460,100 L500,100 L500,250 L460,250 Z" /> <!-- Sweden -->
-                        <path id="BG" d="M620,430 L680,430 L680,480 L620,480 Z" /> <!-- Bulgaria -->
-                        <path id="MT" d="M530,595 A5,5 0 1,0 540,595 A5,5 0 1,0 530,595" /> <!-- Malta -->
-                        <path id="IN" d="M850,500 L950,500 L950,600 L850,600 Z" class="desi-highlight" /> <!-- India Inset -->
-
-                        <!-- City Pins -->
-                        
-                        <!-- Paris -->
-                        <g class="map-pin" data-city="paris">
-                            <circle cx="395" cy="385" r="4" class="pulse" />
-                            <circle cx="395" cy="385" r="5" fill="var(--color-midnight)" />
-                        </g>
-
-                        <!-- Amsterdam -->
-                        <g class="map-pin" data-city="amsterdam">
-                            <circle cx="420" cy="310" r="4" class="pulse" />
-                            <circle cx="420" cy="310" r="5" fill="var(--color-midnight)" />
-                        </g>
-
-                        <!-- Brussels -->
-                        <g class="map-pin" data-city="brussels">
-                            <circle cx="410" cy="340" r="4" class="pulse" />
-                            <circle cx="410" cy="340" r="5" fill="var(--color-midnight)" />
-                        </g>
-
-                        <!-- Gothenburg -->
-                        <g class="map-pin" data-city="gothenburg">
-                            <circle cx="480" cy="180" r="4" class="pulse" />
-                            <circle cx="480" cy="180" r="5" fill="var(--color-midnight)" />
-                        </g>
-
-                        <!-- Prague -->
-                        <g class="map-pin" data-city="prague">
-                            <circle cx="505" cy="345" r="4" class="pulse" />
-                            <circle cx="505" cy="345" r="5" fill="var(--color-midnight)" />
-                        </g>
-
-                        <!-- Vienna -->
-                        <g class="map-pin" data-city="vienna">
-                            <circle cx="525" cy="375" r="4" class="pulse" />
-                            <circle cx="525" cy="375" r="5" fill="var(--color-midnight)" />
-                        </g>
-
-                        <!-- Florence -->
-                        <g class="map-pin" data-city="florence">
-                            <circle cx="515" cy="475" r="4" class="pulse" />
-                            <circle cx="515" cy="475" r="5" fill="var(--color-midnight)" />
-                        </g>
-
-                        <!-- Sozopol -->
-                        <g class="map-pin" data-city="sozopol">
-                            <circle cx="650" cy="450" r="4" class="pulse" />
-                            <circle cx="650" cy="450" r="5" fill="var(--color-midnight)" />
-                        </g>
-
-                        <!-- Malta -->
-                        <g class="map-pin" data-city="malta">
-                            <circle cx="535" cy="595" r="4" class="pulse" />
-                            <circle cx="535" cy="595" r="5" fill="var(--color-midnight)" />
-                        </g>
-
-                        <!-- Goa (In Inset) -->
-                        <g class="map-pin" data-city="goa">
-                            <circle cx="900" cy="550" r="4" class="pulse" />
-                            <circle cx="900" cy="550" r="5" fill="var(--color-midnight)" />
-                            <text x="860" y="490" font-family="Montserrat" font-size="12" fill="var(--color-text-muted)">The Desi Source</text>
-                        </g>
-                    </svg>
+            <div class="dest-grid">
+                <div class="dest-card">
+                    <a href="posts/2021/paris-oct.html">
+                        <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=600&q=80"
+                            alt="France">
+                        <div class="dest-overlay">
+                            <h3>France</h3>
+                        </div>
+                    </a>
                 </div>
-
-                <div class="map-controls">
-                    <label class="toggle-container">
-                        <input type="checkbox" id="desi-toggle">
-                        <span class="toggle-slider"></span>
-                        <span class="toggle-label">The Desi Filter (Cultural Intersections)</span>
-                    </label>
+                <div class="dest-card">
+                    <a href="posts/2022/florence-apr.html">
+                        <img src="https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?auto=format&fit=crop&w=600&q=80"
+                            alt="Italy">
+                        <div class="dest-overlay">
+                            <h3>Italy</h3>
+                        </div>
+                    </a>
+                </div>
+                <div class="dest-card">
+                    <a href="posts/2022/amsterdam-jul.html">
+                        <img src="https://images.unsplash.com/photo-1534351590666-13e3e96b5017?auto=format&fit=crop&w=600&q=80"
+                            alt="Netherlands">
+                        <div class="dest-overlay">
+                            <h3>Netherlands</h3>
+                        </div>
+                    </a>
+                </div>
+                <div class="dest-card">
+                    <a href="posts/2022/goa-dec.html">
+                        <img src="https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=600&q=80"
+                            alt="India">
+                        <div class="dest-overlay">
+                            <h3>India</h3>
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>
     </section>
-
-    <script src="assets/js/map.js"></script>
 
     <section id="latest" class="section-padding container">
         <div class="section-title">
