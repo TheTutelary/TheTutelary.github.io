@@ -307,6 +307,52 @@ nav {
     color: var(--color-midnight);
 }
 
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-4);
+    margin: var(--space-8) 0;
+}
+
+.photo-grid.grid-3 {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.photo-grid.grid-1 {
+    grid-template-columns: 1fr;
+}
+
+.grid-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius-md);
+}
+
+.grid-item img {
+    height: 100%;
+    object-fit: cover;
+    margin: 0;
+    transition: transform 0.5s ease;
+}
+
+.grid-item:hover img {
+    transform: scale(1.05);
+}
+
+.photo-caption {
+    font-size: var(--font-size-small);
+    color: var(--color-text-secondary);
+    font-style: italic;
+    margin-top: var(--space-2);
+    text-align: center;
+}
+
+@media (max-width: 600px) {
+    .photo-grid, .photo-grid.grid-3 {
+        grid-template-columns: 1fr;
+    }
+}
+
 /* Navigation refinement */
 nav .nav-menu {
     display: flex;
