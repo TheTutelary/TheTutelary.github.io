@@ -21,6 +21,7 @@ body {
 
 a { text-decoration: none; color: inherit; transition: color 0.3s ease; }
 img { width: 100%; display: block; border-radius: var(--radius-sm); }
+hr { border: none; height: 1px; background-color: var(--color-border); margin-bottom: var(--space-4); }
 
 .container { 
     max-width: 1140px; 
@@ -54,13 +55,13 @@ h2 { font-size: var(--font-size-h2); margin-bottom: var(--space-4); }
 
 .btn-primary {
     background-color: var(--color-saffron);
-    color: white;
+    color: var(--color-white);
     box-shadow: var(--shadow-brand);
 }
 
 .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 15px 45px rgba(230, 126, 34, 0.2);
+    box-shadow: 0 15px 45px var(--brand-glow-strong);
 }
 
 .btn-outline {
@@ -71,7 +72,7 @@ h2 { font-size: var(--font-size-h2); margin-bottom: var(--space-4); }
 
 .btn-outline:hover {
     background-color: var(--color-midnight);
-    color: white;
+    color: var(--color-white);
 }
 
 /* --- 4. NAVIGATION --- */
@@ -95,6 +96,10 @@ nav {
 }
 .logo span { color: var(--color-saffron); }
 
+nav.nav-center {
+    justify-content: center;
+}
+
 .nav-menu a {
     margin-left: var(--space-4);
     font-weight: 600;
@@ -106,25 +111,25 @@ nav {
 /* --- 5. HERO SECTION --- */
 .hero {
     height: 85vh;
-    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1499678329028-101435549a4e?auto=format&fit=crop&w=1920&q=80');
+    background: linear-gradient(var(--overlay-dark-light), var(--overlay-dark-med)), url('https://images.unsplash.com/photo-1499678329028-101435549a4e?auto=format&fit=crop&w=1920&q=80');
     background-size: cover;
     background-position: center;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    color: white;
+    color: var(--color-white);
 }
 
 .hero h1 { 
-    color: white; 
+    color: var(--color-white); 
     font-size: var(--font-size-display); 
     margin-bottom: var(--space-4);
 }
 
 .hero-tag {
     display: inline-block;
-    background-color: rgba(255,255,255,0.2);
+    background-color: var(--overlay-light-glow);
     backdrop-filter: blur(5px);
     padding: var(--space-1) var(--space-3);
     border-radius: var(--radius-pill);
@@ -188,13 +193,13 @@ nav {
 .dest-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+    background: linear-gradient(to top, var(--overlay-dark-heavy), transparent);
     display: flex;
     align-items: flex-end;
     padding: var(--space-3);
 }
 
-.dest-overlay h3 { color: white; font-size: 1.25rem; font-family: var(--font-body); letter-spacing: 1px; }
+.dest-overlay h3 { color: var(--color-white); font-size: 1.25rem; font-family: var(--font-body); letter-spacing: 1px; }
 
 .article-grid {
     display: grid;
@@ -209,7 +214,7 @@ nav {
 .about-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 60px;
+    gap: var(--space-8);
     align-items: center;
 }
 
@@ -274,7 +279,7 @@ nav {
     font-family: var(--font-head);
     font-style: italic;
     font-size: var(--font-size-body-lg);
-    background-color: rgba(230, 126, 34, 0.03);
+    background-color: var(--brand-bg-light);
     color: var(--color-midnight);
 }
 
@@ -370,7 +375,7 @@ nav .nav-menu {
 /* --- 9. FOOTER --- */
 footer {
     background-color: var(--color-midnight);
-    color: rgba(255,255,255,0.6);
+    color: var(--overlay-light-text);
     padding: var(--space-12) 0;
     font-size: var(--font-size-small);
 }
@@ -381,12 +386,27 @@ footer {
     gap: var(--space-6);
 }
 
-.footer-col h4 { color: white; margin-bottom: var(--space-3); }
+.footer-col h4 { color: var(--color-white); margin-bottom: var(--space-3); }
 .footer-col ul { list-style: none; }
 .footer-col li { margin-bottom: var(--space-2); }
 .footer-col a:hover { color: var(--color-saffron); }
 
-/* --- 10. MOBILE RESPONSIVE --- */
+/* --- 10. ERROR PAGE --- */
+.error-code {
+    font-size: 8rem;
+    font-weight: 700;
+    color: var(--color-saffron);
+    line-height: 1;
+    margin-bottom: var(--space-4);
+}
+
+.error-msg {
+    font-size: 1.25rem;
+    margin-bottom: var(--space-8);
+    color: var(--color-text-muted);
+}
+
+/* --- 11. MOBILE RESPONSIVE --- */
 @media (max-width: 768px) {
     .hero h1 { font-size: 2.5rem; }
     .hero-buttons { flex-direction: column; }

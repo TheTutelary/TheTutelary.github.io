@@ -17,6 +17,17 @@
     --color-text-primary: #2D241E;   /* Deep Earth */
     --color-text-muted: #6B7280;
     --color-border: #E5E7EB;        /* Lichen Grey */
+    --color-white: #FFFFFF;
+    --color-black: #000000;
+    
+    /* Overlays & Alpha */
+    --overlay-dark-light: rgba(0,0,0,0.3);
+    --overlay-dark-med: rgba(0,0,0,0.4);
+    --overlay-dark-heavy: rgba(0,0,0,0.7);
+    --overlay-light-glow: rgba(255,255,255,0.2);
+    --overlay-light-text: rgba(255,255,255,0.6);
+    --brand-glow-strong: rgba(230, 126, 34, 0.2);
+    --brand-bg-light: rgba(230, 126, 34, 0.03);
     
     /* Accents & States */
     --color-accent-warm: #C0392B;   /* Terra Cotta */
